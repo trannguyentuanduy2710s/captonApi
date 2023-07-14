@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capstone JS</title>
+
+    <!-- GOOGLE FONT -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <!-- BS4 CSS    -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="../../asset/css/style.css">
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header>
+        <nav class="phoneNav container navbar navbar-expand-lg ">
+            <a class="navbar-brand" href="#">Duy-Store <i class="fa-brands fa-apple"></i></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#phoneNavbar"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon">
+                    <i class="fa fa-bars"></i>
+                </span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="phoneNavbar">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <i class="fa-sharp fa-solid fa-house"></i><a href="">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <i class="fa-sharp fa-solid fa-house"></i><a href="">ADMIN</a>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+        
+    </header>
+
+    <!-- NOTIFICATIONS -->
+    <section class="notification text-align: "center" ">
+        <h6>Adminstrator Duy-Store</h6>
+        <span>---<img src="../../asset/img/download.png" alt=""> --- </span>
+    </section>
+
+   <!-- Body -->
+   <div class="container">
+    <h1 class="text-center text-danger mt-5">Quản lý sản phẩm</h1>
+    <div>
+        <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Add
+            product</button>
+    </div>
+    <table class="table mt-5">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Image</th>
+                <th>Description</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+    </table>
+
+    <!-- //MODAL and Product -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel" >ADD PRODUCT</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="fa-brands fa-apple"></i></span>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Amount" placeholder="Phone Name">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">$</span>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Price">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="fa-solid fa-images"></i></span>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Image">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="fa-brands fa-rocketchat"></i></span>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Description">
+                    </div>
+                      
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id ="btnsave" class="btn btn-primary">Add Phone</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+    
+
+     <!-- FOOTER-->
+     <footer>
+        <div class="footer__top section ">
+            <div class="container">
+                <div class="footer__grid row">
+                    <div class="col-4">
+                        <h3>Về Chúng Tôi</h3>
+                        <p>Là một trong những nơi bán iPhone chính hãng hàng đầu với tiêu chí và châm ngôn "Khách hàng là cha là mẹ"</p>
+                    </div>
+                    <div class="col-4">
+                        <h3>Duy-Store</h3>
+                        <div class="footer__link">
+                            <i class="fa fa-arrow-right"></i>
+                            <a href="#">Uy Tín</a>
+                        </div>
+                        <div class="footer__link">
+                            <i class="fa fa-arrow-right"></i>
+                            <a href="#">Chất lượng</a>
+                        </div>
+                        <div class="footer__link">
+                            <i class="fa fa-arrow-right"></i>
+                            <a href="#">Giá cả cạnh tranh</a>
+                        </div>
+                        <div class="footer__link">
+                            <i class="fa fa-arrow-right"></i>
+                            <a href="#">Hẫu mãi bền vững</a>
+                        </div>
+                        
+                    </div>
+                    <div class="col-4">
+                        <h3>Contact Info</h3>
+                        <div class="footer__contact">
+                            <i class="fa fa-map-marker-alt"></i>
+                            <a href="https://www.google.com/maps/place/Trung+T%C3%A2m+%C4%90%C3%A0o+T%E1%BA%A1o+L%E1%BA%ADp+Tr%C3%ACnh+CyberSoft+-+C%C6%A1+S%E1%BB%9F+Qu%E1%BA%ADn+G%C3%B2+V%E1%BA%A5p,+TP.HCM/@10.8329265,106.6716899,21z/data=!4m14!1m7!3m6!1s0x317529c7e0062389:0x6044d393dbe44e8c!2zVHJ1bmcgVMOibSDEkMOgbyBU4bqhbyBM4bqtcCBUcsOsbmggQ3liZXJTb2Z0IC0gQ8ahIFPhu58gUXXhuq1uIEfDsiBW4bqlcCwgVFAuSENN!8m2!3d10.83293!4d106.67187!16s%2Fg%2F11jylkn2xj!3m5!1s0x317529c7e0062389:0x6044d393dbe44e8c!8m2!3d10.83293!4d106.67187!16s%2Fg%2F11jylkn2xj?hl=vi-VN&entry=ttu">Tòa nhà Cyber-Soft – HCM</a>
+                        </div>
+                        <div class="footer__contact">
+                            <i class="fa fa-envelope"></i>
+                            <a href="">Duy@gmail.com</a>
+                        </div>
+                        <div class="footer__contact">
+                            <i class="fa fa-phone"></i>
+                            <a href="">0989999999</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer__form">
+                    <form>
+                        <div class="form-group form-row ">
+                            <label class="col-4 col-form-label" for="emailFooter">Phản hồi tại đây</label>
+                            <div class="col-6">
+                                <input type="email" class="form-control" id="emailFooter"
+                                placeholder=" Enter Email Address......">
+                            </div>
+                            <div class="col-2 text-center">
+                                <button type="submit" class="btn">SUBMIT</button>
+                            </div>
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <div>
+                © 2020 Instruction. All rights reserved | Design by <a href="#">Duy Trần</a> 
+            </div>
+        </div>
+    </footer>
+
+    <!-- Thư viện hỗ trợ jquery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <!-- BS4 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+    <!-- OWLJS-->
+    <script src="./js/owl.carousel.min.js"></script>
+    <script>
+        $('.owl-carousel').owlCarousel({
+            loop: true,
+            margin: 10,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 3
+                }
+            }
+        })
+    </script>    
+</body>
+
+</html>
