@@ -34,9 +34,16 @@ header .navbar-brand {
     color: white;
 }
 
+header .phoneNav {
+    
+}
+
+
 .notification{
     text-align: center;
 }
+
+
 
 /* CAROUSEL */
 #carouselCyber .carousel-caption {

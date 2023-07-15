@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="../../asset/css/style.css">
+    
+    
 </head>
 
 <body>
@@ -64,9 +66,9 @@
     <table class="table mt-5">
         <thead>
             <tr>
-                <th>STT</th>
+                <th>ID</th>
                 <th>Name</th>
-                <th>Price</th>
+                <th>Screen</th>
                 <th>Image</th>
                 <th>Description</th>
                 <th></th>
@@ -88,30 +90,54 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="fa-brands fa-apple"></i></span>
                         </div>
-                        <input type="text" class="form-control" aria-label="Amount" placeholder="Phone Name">
+                        <input type="text" name="name" class="form-control" aria-label="Amount" placeholder="Phone Name">
                     </div>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                           <span class="input-group-text">$</span>
                         </div>
-                        <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Price">
+                        <input type="text" name="price" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Price">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="fa-brands fa-apple"></i></span>
+                        </div>
+                        <input type="text" name="backCamera" class="form-control" aria-label="Amount" placeholder="Back Camera">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="fa-brands fa-apple"></i></span>
+                        </div>
+                        <input type="text" name="frontCamera" class="form-control" aria-label="Amount" placeholder="Front Camera">
                     </div>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="fa-solid fa-images"></i></span>
                         </div>
-                        <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Image">
+                        <input type="text" name="img" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Image">
                     </div>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="fa-brands fa-rocketchat"></i></span>
                         </div>
-                        <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Description">
+                        <input type="text" name="desc" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Description">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="fa-brands fa-rocketchat"></i></span>
+                        </div>
+                        <input type="text" name="type" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Type Phone">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="fa-brands fa-rocketchat"></i></span>
+                        </div>
+                        <input type="text" name="id" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="ID">
                     </div>
                       
                 </div>
                 <div class="modal-footer">
-                    <button type="button" id ="btnsave" class="btn btn-primary">Add Phone</button>
+                    <button type="button" name="btnadd" id ="btnsave" class="btn btn-primary">Add Phone</button>
                 </div>
             </div>
         </div>
@@ -198,8 +224,8 @@
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>
     <!-- OWLJS-->
-    <script src="./js/owl.carousel.min.js"></script>
-    <script>
+    <!-- <script src="./js/owl.carousel.min.js"></script> -->
+    <!-- <script>
         $('.owl-carousel').owlCarousel({
             loop: true,
             margin: 10,
@@ -215,7 +241,12 @@
                 }
             }
         })
-    </script>    
+    </script>     -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../../admin/util/validation.js"></script>
+    <script type="module" src="../../admin/constants/api.js"></script>
+    <script type="module" src="../../admin/model/products.js"></script>
+    <script type="module" src="../../admin/controller/main.js"></script>
 </body>
 
 </html>
