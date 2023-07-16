@@ -29,7 +29,7 @@ function renderTable(arrPhone) {
                 
                 <td>${item.id}</td>
                 <td>${item.name}</td>
-                <td>${item.price}</td>
+                <td>${item.price.toLocaleString()}</td>
                 <td>
                     <image
                        src=${item.img} 
@@ -41,14 +41,15 @@ function renderTable(arrPhone) {
                     <div style='max-width: 200px'>
                         <button 
                             class='btn btn-danger' 
-                            onclick="deleteFood(${item.id})"
+                            onclick="deletePhone(${item.id})"
                         >
                             Delete
                         </button>
                         <button 
                             class='btn btn-success ml-3' 
-                            data-toggle="modal" 
-                            data-target="#exampleModal"
+                            data-bs-toggle="modal" 
+                            data-bs-target="#exampleModal"
+                            onclick="editPhone(${item.id})"
                         >
                             Edit
                         </button>
@@ -106,12 +107,19 @@ const layThongTinPhone = () => {
     //  return isValid ? nhanVien : undefined //(Toán tử 3 ngôi)
 }
 
+// ẩn btn cập nhật khi click vào btn add products
+getElement('#btnAddProduct').onclick = () => {
+    // ẩn btn cập nhật
+    getElement('#btnEdit').style.display = 'none'
+
+    // show lại btn thêm món ăn
+    getElement('#btnAddPhone').style.display = 'inline-block'
+}
 
 //gọi API thêm product vào DB
-getElement('#btnsave').onclick = () => {
+getElement('#btnAddPhone').onclick = () => {
     // lấy thông tin product từ input
     const phone = layThongTinPhone()
-    console.log('food: ', phone)
 
     // call API thêm product
     const promise = axios({
@@ -119,8 +127,7 @@ getElement('#btnsave').onclick = () => {
         method: 'POST',
         data: {
             ...phone,
-            // loaiMon: food.mapLoaiMon(),
-            // tinhTrang: food.mapTinhTrang(),
+
         },
     })
 
@@ -131,7 +138,7 @@ getElement('#btnsave').onclick = () => {
             getPhoneList()
 
             // đóng modal sau khi thêm thành công
-            //getElement('.btn.btn-secondary').click()
+            getElement('.btn-close').click()
         })
 
         // thêm mới thất bại
@@ -140,89 +147,88 @@ getElement('#btnsave').onclick = () => {
         })
 }
 
-// Xóa product
-// window.deletePhone = (id) => {
-//     console.log({ id })
-//     // call API xóa product
-//     const promise = axios({
-//         url: `${DOMAIN}/${id}`,
-//         method: 'DELETE',
-//     })
+//Xóa product
+window.deletePhone = (id) => {
+    console.log({ id })
+    // call API xóa product
+    const promise = axios({
+        url: `${DOMAIN}/${id}`,
+        method: 'DELETE',
+    })
 
-//     promise
-//         // Xóa thành công
-//         .then(() => {
-//             // get lại danh sách food sau khi xóa thành công
-//             getPhoneList()
-//         })
-//         // Xóa thất bại
-//         .catch((err) => {
-//             console.log(err)
-//         })
-// }
+    promise
+        // Xóa thành công
+        .then(() => {
+            // get lại danh sách products sau khi xóa thành công
+            getPhoneList()
+        })
+        // Xóa thất bại
+        .catch((err) => {
+            console.log(err)
+        })
+}
 
 // EDIT Phone
-// window.editPhone = (id) => {
-//     // ẩn btn thêm product
-//     getElement('#btnThemMon').style.display = 'none'
+window.editPhone = (id) => {
+    // ẩn btn thêm 
+    getElement('#btnAddPhone').style.display = 'none'
 
-//     //Show button cập nhật
-//     getElement('#btnCapNhat').style.display = 'inline-block'
+    //Show button cập nhật
+    getElement('#btnEdit').style.display = 'inline-block'
 
+    getElement('#btnEdit').setAttribute('data-id', id)
 
-//     getElement('#btnCapNhat').setAttribute('data-id', id)
+    // call API lấy thông tin product
+    const promise = axios({
+        url: `${DOMAIN}/${id}`,
+        method: 'GET',
+    })
 
-//     console.log(id)
-//     // call API lấy thông tin product
-//     const promise = axios({
-//         url: `${DOMAIN}/${id}`,
-//         method: 'GET',
-//     })
+    promise
+        .then((result) => {
+            const elements = document.querySelectorAll(
+                '.modal-body input'
+            )
+            elements.forEach((ele) => {
+                const { name } = ele
+                ele.value = result.data[name]
+            })
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+}
 
-//     promise
-//         .then((result) => {
-//             const elements = document.querySelectorAll(
-//                 '#foodForm input, #foodForm select, #foodForm textarea'
-//             )
-//             elements.forEach((ele) => {
-//                 const { name } = ele
-//                 ele.value = result.data[name]
-//             })
-//         })
-//         .catch((err) => {
-//             console.log(err)
-//         })
-// }
+getElement('#btnEdit').onclick = () => {
+    //Lấy thông tin product từ input
+    const phone = layThongTinPhone()
 
-// getElement('#btnCapNhat').onclick = () => {
-//     //Lấy thông tin product từ input
-//     const phone = layThongTinPhone()
+    //Lấy id thông qua thuộc tính set attribute
+    const id = getElement('#btnEdit').getAttribute('data-id')
 
-//     //call API cập nhật DB
-//     const promise = axios({
-//         url: `${DOMAIN}/${id}`, //id từ đâu chưa biết
-//         method: 'PUT',
-//         data: {
-//             ...phone,
-//             loaiMon: food.mapLoaiMon(),
-//             tinhTrang: food.mapTinhTrang(),
-//         },
-//     })
+    //call API cập nhật DB
+    const promise = axios({
+        url: `${DOMAIN}/${id}`,
+        method: 'PUT',
+        data: {
+            ...phone,
+        },
+    })
 
-//     promise.then(() => {
-//         //get lại danh sách món ăn sau khi cập nhật thành công
-//         getPhoneList()
+    promise.then(() => {
+        //get lại danh sách sau khi cập nhật thành công
+        getPhoneList()
 
-//         // đóng modal sau khi thêm thành công
-//         getElement('.btn.btn-secondary').click()
+        // đóng modal sau khi thêm thành công
+        getElement('.btn-close').click()
 
-//         // xóa attribute data-id
-//         getElement('#btnCapNhat').toggleAttribute('data-id', false)
-//     })
-//         .catch((err) => {
-//             console.log(err)
-//         })
-// }
+        // xóa attribute data-id
+        getElement('#btnEdit').toggleAttribute('data-id', false)
+    })
+        .catch((err) => {
+            console.log(err)
+        })
+}
 
 // Tìm kiếm sinh viên
 // getElement('#searchName').addEventListener('keyup', function () {
@@ -236,3 +242,23 @@ getElement('#btnsave').onclick = () => {
 //     }
 //     renderdsnv(arrSearch)
 // })
+
+//Search
+getElement('#txtSearch').addEventListener('keyup', () => {
+    const valueSearch =  getElement('#txtSearch').value.toLowerCase()
+    const arrPhone = []
+    // for(let i = 0; i < dssv.arrSV.length; i++){
+    //     let tenSV = dssv.arrSV[i].tenSV.toLowerCase()
+    //     if(tenSV.indexOf(valueSearch) !== -1){
+    //         arrSVSearch.push(dssv.arrSV[i])
+    //     }
+    // }
+    valueSearch.forEach((ele) => {
+        const { name, value } = ele
+        arrPhone[name] = value
+    })
+    // for (const index in )
+    // arrPhone.push(Phone[name])
+    // console.log('arrSVSearch: ', arrSVSearch);
+    // renderdssv(arrSVSearch)
+})
