@@ -74,7 +74,7 @@ const layThongTinPhone = () => {
         phone[name] = value
     })
 
-    const { name, price, screen, backCamera, frontCamera, img, desc, type, id } = phone
+    const { name, price, screen, backCamera, frontCamera, img, desc, type, id} = phone
 
     return new Phone(name, price, screen, backCamera, frontCamera, img, desc, type, id)
 
