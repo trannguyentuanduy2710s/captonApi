@@ -230,35 +230,45 @@ getElement('#btnEdit').onclick = () => {
         })
 }
 
-// Tìm kiếm sinh viên
-// getElement('#searchName').addEventListener('keyup', function () {
-//     var valueSearch = getElement('#searchName').value.toLowerCase()
-//     var arrSearch = []
-//     for (var i = 0; i < dsnv.arrNV.length; i++) {
-//         var loaiNV = dsnv.arrNV[i].loaiNV().toLowerCase()
-//         if (loaiNV.indexOf(valueSearch) !== -1) {
-//             arrSearch.push(dsnv.arrNV[i])
-//         }
-//     }
-//     renderdsnv(arrSearch)
-// })
+// Search
+getElement('#btnSearch').onclick = () => {
+    const ele = document.querySelectorAll('#txtSearch')
 
-//Search
-getElement('#txtSearch').addEventListener('keyup', () => {
-    const valueSearch =  getElement('#txtSearch').value.toLowerCase()
-    const arrPhone = []
-    // for(let i = 0; i < dssv.arrSV.length; i++){
-    //     let tenSV = dssv.arrSV[i].tenSV.toLowerCase()
-    //     if(tenSV.indexOf(valueSearch) !== -1){
-    //         arrSVSearch.push(dssv.arrSV[i])
-    //     }
-    // }
-    valueSearch.forEach((ele) => {
-        const { name, value } = ele
-        arrPhone[name] = value
+    const phone = layThongTinPhone()
+
+    const arrPhone = Object.keys(phone)
+
+    let mang = arrPhone.filter((tenSP, index) => {
+        if (tenSP.name === ele)
+        {
+            return tenSP
+        }
+        return
     })
-    // for (const index in )
-    // arrPhone.push(Phone[name])
-    // console.log('arrSVSearch: ', arrSVSearch);
-    // renderdssv(arrSVSearch)
-})
+
+    console.log('mang: ',mang);
+}
+
+//Sort
+// getElement('#Sort').onchange = (obj) => {
+//     const phone = layThongTinPhone()
+
+//     const value = obj.value
+//     // const tim = document.querySelector('#Sort')
+//     if (value == "loai1") {
+//         sapXep = phone.sort((sp, spTiepTheo) => {
+//            return sp.price - spTiepTheo.price
+//        })
+//    } 
+//    else if (value == "loai2") {
+//        sapXep = phone.sort((sp, spTiepTheo) => {
+//            return spTiepTheo.price - sp.price
+//        })
+//    }
+
+//     // forEach((sapXep, index) => {
+//     // })
+    
+//     console.log('sapXep: ', sapXep);
+// }
+
