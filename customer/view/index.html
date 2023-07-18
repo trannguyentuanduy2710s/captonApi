@@ -15,9 +15,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="../../asset/css/style.css">
+    <link rel="stylesheet" href="../../asset/css/main.css">
 </head>
 
 <body>
@@ -40,32 +43,134 @@
                     <li class="nav-item">
                         <i class="fa-sharp fa-solid fa-house"></i><a href="">ADMIN</a>
                     </li>
-
+                    <li>
+                        <nav id="main-nav">
+                            <a class="cart-button" href="#">
+                                <span class="bag-count">3</span>
+                                <span class="bag-icon">Bag</span>
+                                <span class="bag-label">View Bag</span>
+                            </a>
+                        </nav>
+                        <aside id="sidebar-cart">
+                            <main>
+                                <a href="#" class="close-button"><span class="close-icon">X</span></a>
+                                <h2>Shopping Bag <span class="count">3</span></h2>
+                                <ul class="products">
+                                    <li class="product">
+                                        <a href="#" class="product-link">
+                                            <span class="product-image">
+                                                <img src="https://via.placeholder.com/75x50/ffffff/cccccc?text=PHOTO"
+                                                    alt="Product Photo">
+                                            </span>
+                                            <span class="product-details">
+                                                <h3>Very Cool Product One</h3>
+                                                <span class="qty-price">
+                                                    <span class="qty">
+                                                        <button class="minus-button" id="minus-button-1">-</button>
+                                                        <input type="number" id="qty-input-1" class="qty-input" step="1"
+                                                            min="1" max="1000" name="qty-input" value="1"
+                                                            pattern="[0-9]*" title="Quantity" inputmode="numeric">
+                                                        <button class="plus-button" id="plus-button-1">+</button>
+                                                        <input type="hidden" name="item-price" id="item-price-1"
+                                                            value="12.00">
+                                                    </span>
+                                                    <span class="price">$16.00</span>
+                                                </span>
+                                            </span>
+                                        </a>
+                                        <a href="#remove" class="remove-button"><span class="remove-icon">X</span></a>
+                                    </li>
+                                    <li class="product">
+                                        <a href="#" class="product-link">
+                                            <span class="product-image">
+                                                <img src="https://via.placeholder.com/75x50/ffffff/cccccc?text=PHOTO"
+                                                    alt="Product Photo">
+                                            </span>
+                                            <span class="product-details">
+                                                <h3>Very Cool Product Two with Long Title</h3>
+                                                <span class="qty-price">
+                                                    <span class="qty">
+                                                        <button class="minus-button" id="minus-button-1">-</button>
+                                                        <input type="number" id="qty-input-2" class="qty-input" step="1"
+                                                            min="1" max="1000" name="qty-input" value="1"
+                                                            pattern="[0-9]*" title="Quantity" inputmode="numeric">
+                                                        <button class="plus-button" id="plus-button-1">+</button>
+                                                        <input type="hidden" name="item-price" id="item-price-2"
+                                                            value="12.00">
+                                                    </span>
+                                                    <span class="price">$28.00</span>
+                                                </span>
+                                            </span>
+                                        </a>
+                                        <a href="#remove" class="remove-button"><span class="remove-icon">X</span></a>
+                                    </li>
+                                    <li class="product">
+                                        <a href="#" class="product-link">
+                                            <span class="product-image">
+                                                <img src="https://via.placeholder.com/75x50/ffffff/cccccc?text=PHOTO"
+                                                    alt="Product Photo">
+                                            </span>
+                                            <span class="product-details">
+                                                <h3>Very Cool Product Three</h3>
+                                                <span class="qty-price">
+                                                    <span class="qty">
+                                                        <form action="#" name="qty-form" id="qty-form-1">
+                                                            <button class="minus-button" id="minus-button-1">-</button>
+                                                            <input type="number" id="qty-input-3" class="qty-input"
+                                                                step="1" min="1" max="1000" name="qty-input" value="1"
+                                                                pattern="[0-9]*" title="Quantity" inputmode="numeric">
+                                                            <button class="plus-button" id="plus-button-1">+</button>
+                                                            <input type="hidden" name="item-price" id="item-price-3"
+                                                                value="12.00">
+                                                        </form>
+                                                    </span>
+                                                    <span class="price">$12.00</span>
+                                                </span>
+                                            </span>
+                                        </a>
+                                        <a href="#remove" class="remove-button"><span class="remove-icon">X</span></a>
+                                    </li>
+                                </ul>
+                                <div class="totals">
+                                    <div class="subtotal">
+                                        <span class="label">Subtotal:</span> <span class="amount">$54.00</span>
+                                    </div>
+                                </div>
+                                <div class="action-buttons">
+                                    <a class="view-cart-button" href="#">Cart</a><a class="checkout-button"
+                                        href="#">Checkout</a>
+                                </div>
+                            </main>
+                        </aside>
+                        <div id="sidebar-cart-curtain"></div>
+                    </li>
                 </ul>
             </div>
         </nav>
-        
+
     </header>
 
     <!-- NOTIFICATIONS -->
-    <section class="notification text-align: "center" ">
+    <section class="notification text-align: " center" ">
         <h6>Welcome to Duy-Store</h6>
-        <span>--- Nhà phân phối iPhone hàng đầu Việt Nam <img src="../../asset/img/download.png" alt=""> --- </span>
+        <span>--- Nhà phân phối iPhone hàng đầu Việt Nam <img src=" ../../asset/img/download.png" alt=""> --- </span>
     </section>
 
-     <!-- CAROUSEL -->
-     <section class="cyberCarousel section">
+    <!-- CAROUSEL -->
+    <section class="cyberCarousel section">
         <div id="carouselCyber" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="../../asset/img/hero_iphone14pro_spring__9xo85pm6sbmm_large.jpg" class="d-block w-100" alt="...">
+                    <img src="../../asset/img/hero_iphone14pro_spring__9xo85pm6sbmm_large.jpg" class="d-block w-100"
+                        alt="...">
                     <div class="container carousel-caption d-none d-md-block">
                         <h1>iPhone 14 ProMax</h1>
                         <p>Thiết kế đỉnh cao - Dẫn đầu xu thế</p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="../../asset/img/hero_iphone14_yellow__eun20sn4imi6_largetall.jpg" class="d-block w-100" alt="...">
+                    <img src="../../asset/img/hero_iphone14_yellow__eun20sn4imi6_largetall.jpg" class="d-block w-100"
+                        alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h2>iPhone 14 Series</h2>
                         <p style="color: black;"> Thỏa sức lựa chọn </p>
@@ -86,15 +191,21 @@
 
 
     <!-- Modal BODY -->
-    
-       <!-- FOOTER-->
-       <footer>
+    <div class="main">
+        <h1 class="mx-4 my-4 text-center" id="title">Products</h1>
+        <div class="row item_main">
+        </div>
+    </div>
+
+    <!-- FOOTER-->
+    <footer>
         <div class="footer__top section ">
             <div class="container">
                 <div class="footer__grid row">
                     <div class="col-4">
                         <h3>Về Chúng Tôi</h3>
-                        <p>Là một trong những nơi bán iPhone chính hãng hàng đầu với tiêu chí và châm ngôn "Khách hàng là cha là mẹ"</p>
+                        <p>Là một trong những nơi bán iPhone chính hãng hàng đầu với tiêu chí và châm ngôn "Khách hàng
+                            là cha là mẹ"</p>
                     </div>
                     <div class="col-4">
                         <h3>Duy-Store</h3>
@@ -114,13 +225,15 @@
                             <i class="fa fa-arrow-right"></i>
                             <a href="#">Hẫu mãi bền vững</a>
                         </div>
-                        
+
                     </div>
                     <div class="col-4">
                         <h3>Contact Info</h3>
                         <div class="footer__contact">
                             <i class="fa fa-map-marker-alt"></i>
-                            <a href="https://www.google.com/maps/place/Trung+T%C3%A2m+%C4%90%C3%A0o+T%E1%BA%A1o+L%E1%BA%ADp+Tr%C3%ACnh+CyberSoft+-+C%C6%A1+S%E1%BB%9F+Qu%E1%BA%ADn+G%C3%B2+V%E1%BA%A5p,+TP.HCM/@10.8329265,106.6716899,21z/data=!4m14!1m7!3m6!1s0x317529c7e0062389:0x6044d393dbe44e8c!2zVHJ1bmcgVMOibSDEkMOgbyBU4bqhbyBM4bqtcCBUcsOsbmggQ3liZXJTb2Z0IC0gQ8ahIFPhu58gUXXhuq1uIEfDsiBW4bqlcCwgVFAuSENN!8m2!3d10.83293!4d106.67187!16s%2Fg%2F11jylkn2xj!3m5!1s0x317529c7e0062389:0x6044d393dbe44e8c!8m2!3d10.83293!4d106.67187!16s%2Fg%2F11jylkn2xj?hl=vi-VN&entry=ttu">Tòa nhà Cyber-Soft – HCM</a>
+                            <a
+                                href="https://www.google.com/maps/place/Trung+T%C3%A2m+%C4%90%C3%A0o+T%E1%BA%A1o+L%E1%BA%ADp+Tr%C3%ACnh+CyberSoft+-+C%C6%A1+S%E1%BB%9F+Qu%E1%BA%ADn+G%C3%B2+V%E1%BA%A5p,+TP.HCM/@10.8329265,106.6716899,21z/data=!4m14!1m7!3m6!1s0x317529c7e0062389:0x6044d393dbe44e8c!2zVHJ1bmcgVMOibSDEkMOgbyBU4bqhbyBM4bqtcCBUcsOsbmggQ3liZXJTb2Z0IC0gQ8ahIFPhu58gUXXhuq1uIEfDsiBW4bqlcCwgVFAuSENN!8m2!3d10.83293!4d106.67187!16s%2Fg%2F11jylkn2xj!3m5!1s0x317529c7e0062389:0x6044d393dbe44e8c!8m2!3d10.83293!4d106.67187!16s%2Fg%2F11jylkn2xj?hl=vi-VN&entry=ttu">Tòa
+                                nhà Cyber-Soft – HCM</a>
                         </div>
                         <div class="footer__contact">
                             <i class="fa fa-envelope"></i>
@@ -138,20 +251,20 @@
                             <label class="col-4 col-form-label" for="emailFooter">Phản hồi tại đây</label>
                             <div class="col-6">
                                 <input type="email" class="form-control" id="emailFooter"
-                                placeholder=" Enter Email Address......">
+                                    placeholder=" Enter Email Address......">
                             </div>
                             <div class="col-2 text-center">
                                 <button type="submit" class="btn">SUBMIT</button>
                             </div>
                         </div>
-                        
+
                     </form>
                 </div>
             </div>
         </div>
         <div class="footer__bottom">
             <div>
-                © 2020 Instruction. All rights reserved | Design by <a href="#">Duy Trần</a> 
+                © 2020 Instruction. All rights reserved | Design by <a href="#">Duy Trần</a>
             </div>
         </div>
     </footer>
@@ -166,6 +279,17 @@
         crossorigin="anonymous"></script>
     <!-- OWLJS-->
     <script src="./js/owl.carousel.min.js"></script>
+    
+    <!-- Axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- API -->
+    <script type="module" src="../../customer/constants/api.js"></script>
+    <!-- OBJ JS -->
+    <script type="module" src="../../customer/model/products.js"></script>
+    <!-- View Bag JS -->
+    <script src="../../customer/model/bag.js"></script>
+    <!-- Customer JS -->
+    <script type="module" src="../../customer/controller/mainV2.js"></script>
 </body>
 
 </html>

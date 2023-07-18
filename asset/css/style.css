@@ -34,9 +34,16 @@ header .navbar-brand {
     color: white;
 }
 
+header .phoneNav {
+    
+}
+
+
 .notification{
     text-align: center;
 }
+
+
 
 /* CAROUSEL */
 #carouselCyber .carousel-caption {
@@ -63,6 +70,48 @@ header .navbar-brand {
     font-size: 15px;
 }
 
+.main {
+    width: 80%;
+    margin: auto;
+}
+
+.item img {
+    margin-top: 30px;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+
+.content {
+    height: 275px;
+    width: 270px;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+    text-align: center;
+    border-color: #0f0f10;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 150px;
+}
+
+.content p {
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.content .button a {
+    width: 116px;
+    background-color: #49A6E9;
+    color: #FFFFFF;
+    height: 30px;
+    letter-spacing: 1.2px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    border-radius: 15px;
+    text-decoration: none;
+    padding: 5px 10px;
+}
 
 /* FOOTER */
 footer{
