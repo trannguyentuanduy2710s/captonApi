@@ -231,23 +231,41 @@ getElement('#btnEdit').onclick = () => {
 }
 
 // Search
-getElement('#btnSearch').onclick = () => {
-    const ele = document.querySelectorAll('#txtSearch')
+// getElement('#btnSearch').onclick = () => {
 
-    const phone = layThongTinPhone()
+//     const nameSearch = document.querySelectorAll('#txtSearch')
 
-    const arrPhone = Object.keys(phone)
+//     let arrSearch = layThongTinPhone()
 
-    let mang = arrPhone.filter((tenSP, index) => {
-        if (tenSP.name === ele)
-        {
-            return tenSP
+//     let mang = arrSearch.filter((tenSP, index) => {
+//         if (tenSP.name === nameSearch)
+//         {
+//             return tenSP
+//         }
+//         return
+//     })
+
+//     console.log('mang: ',mang);
+// }
+
+// Tìm kiếm sinh viên
+getElement('#searchName').addEventListener('keyup', function () {
+    var valueSearch = getElement('#searchName').value.toLowerCase()
+    var arrSearch = []
+    
+    for (var i = 0; i < phone.length; i++) {
+        var tenSP = phone[i].name
+        if (tenSP.indexOf(valueSearch) !== -1) {
+            arrSearch.push(phone[i])
         }
-        return
-    })
+    }
+    console.log(arrSearch);
+    //renderTable(arrSearch)
+})
 
-    console.log('mang: ',mang);
-}
+
+//input.addEventListener('keyup', filterUsers);
+
 
 //Sort
 // getElement('#Sort').onchange = (obj) => {
