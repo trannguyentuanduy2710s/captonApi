@@ -3,6 +3,7 @@ import { DOMAIN } from "../../admin/constants/api.js";
 
 const getElement = (selector) => document.querySelector(selector)
 
+
 const getPhoneList = () => {
     const promise = axios({
         url: DOMAIN,
@@ -17,6 +18,7 @@ const getPhoneList = () => {
         .catch((err) => {
             console.log(err)
         })
+   
 }
 getPhoneList()
 
@@ -77,8 +79,6 @@ const layThongTinPhone = () => {
     const { name, price, screen, backCamera, frontCamera, img, desc, type, id} = phone
 
     return new Phone(name, price, screen, backCamera, frontCamera, img, desc, type, id)
-
-
 
     //  //Validation
     //  let isValid = true
@@ -149,7 +149,6 @@ getElement('#btnAddPhone').onclick = () => {
 
 //Xóa product
 window.deletePhone = (id) => {
-    console.log({ id })
     // call API xóa product
     const promise = axios({
         url: `${DOMAIN}/${id}`,
@@ -231,29 +230,51 @@ getElement('#btnEdit').onclick = () => {
 }
 
 // Search
-getElement('#btnSearch').onclick = () => {
-    const ele = document.querySelectorAll('#txtSearch')
+// getElement('#btnSearch').onclick = () => {
+//     const ele = document.querySelectorAll('#txtSearch')
+//     console.log("ele: ", ele);
 
-    const phone = layThongTinPhone()
+//     const phone = layThongTinPhone()
 
-    const arrPhone = Object.keys(phone)
+//     const arrPhone = Object.Phone(Phone.name)
 
-    let mang = arrPhone.filter((tenSP, index) => {
-        if (tenSP.name === ele)
-        {
-            return tenSP
-        }
-        return
-    })
+//     let mang = arrPhone.filter((tenSP) => {
+//         if (tenSP.name === ele)
+//         {
+//             return tenSP
+//         }
+//         return
+//     })
 
-    console.log('mang: ',mang);
-}
+//     console.log('mang: ',mang);
+// }
+
+
+// getElement('#txtSearch').addEventListener('keyup', function(){
+//     let duy = layThongTinPhone()
+//     console.log("duy: ", duy);
+//     console.log("valueSearch: ", valueSearch);
+   
+//     // const searchResults = duy.phone((valueSearch) => {
+//     //     const productName = Phone.name
+//     //     return productName.includes(valueSearch);
+//     // });
+// //     // for(var i = 0; i < dsnv.arrNV.length; i++){
+// //     //     var ranks = dsnv.arrNV[i].xepLoai().toLowerCase()
+// //     //     if(ranks.indexOf(valueSearch) !== -1){
+// //     //         arrSearch.push(dsnv.arrNV[i])
+// //     //     }
+// //     // }
+// //     // console.log("arrNVSearch: ", arrNVSearch)   
+// //     // renderdsnv(arrNVSearch)
+// //    return searchResults;
+// })
 
 //Sort
 // getElement('#Sort').onchange = (obj) => {
-//     const phone = layThongTinPhone()
+//     let duy = layThongTinPhone()
+//     console.log("duy: ", duy);
 
-//     const value = obj.value
 //     // const tim = document.querySelector('#Sort')
 //     if (value == "loai1") {
 //         sapXep = phone.sort((sp, spTiepTheo) => {
