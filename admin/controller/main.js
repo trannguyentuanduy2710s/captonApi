@@ -76,14 +76,56 @@ const layThongTinPhone = () => {
 
     
     const { name, price, screen, backCamera, frontCamera, img, desc, type, id} = phone
-    
+
+    validate()
 
     return new Phone(name, price, screen, backCamera, frontCamera, img, desc, type, id)
+}
+
+// ẩn btn cập nhật khi click vào btn add products
+getElement('#btnAddProduct').onclick = () => {
+    // ẩn btn cập nhật
+    getElement('#btnEdit').style.display = 'none'
+
+    // show lại btn thêm món ăn
+    getElement('#btnAddPhone').style.display = 'inline-block'
+}
+
+//gọi API thêm product vào DB
+getElement('#btnAddPhone').onclick = () => {
+    // lấy thông tin product từ input
+    const phone = layThongTinPhone()
+
+    // call API thêm product
+    const promise = axios({
+        url: DOMAIN,
+        method: 'POST',
+        data: {
+            ...phone,
+
+        },
+    })
+
+    promise
+        // thêm mới thành công
+        .then((result) => {
+            // get lại danh sách phones
+            getPhoneList()
+
+            // đóng modal sau khi thêm thành công
+            //getElement('.btn-close').click()
+        })
+
+        // thêm mới thất bại
+        .catch((err) => {
+            console.log('err: ', err)
+        })
 
     
 }
 
 
+//VALIDATION
 // Lấy giá trị của một input
 function getValue(id){
     return document.getElementById(id).value.trim();
@@ -94,13 +136,12 @@ function showError(key, mess){
     document.getElementById(key + '_error').innerHTML = mess;
 }
 
-function validate()
-{
+function validate () {
     var flag = true;
      
     // 1 username
     var username = getValue('name');
-    if (username == '' || username.length < 5 || !/^[a-zA-Z0-9]+$/.test(username)){
+    if (username == '' || !/^[a-zA-Z0-9]+$/.test(username)){
         flag = false;
         showError('name', '(*)This field cant be empty');
     }
@@ -156,51 +197,6 @@ function validate()
      
     return flag;
 }
-
-
-
-// ẩn btn cập nhật khi click vào btn add products
-getElement('#btnAddProduct').onclick = () => {
-    // ẩn btn cập nhật
-    getElement('#btnEdit').style.display = 'none'
-
-    // show lại btn thêm món ăn
-    getElement('#btnAddPhone').style.display = 'inline-block'
-}
-
-//gọi API thêm product vào DB
-getElement('#btnAddPhone').onclick = () => {
-    // lấy thông tin product từ input
-    const phone = layThongTinPhone()
-
-    // call API thêm product
-    const promise = axios({
-        url: DOMAIN,
-        method: 'POST',
-        data: {
-            ...phone,
-
-        },
-    })
-
-    promise
-        // thêm mới thành công
-        .then((result) => {
-            // get lại danh sách phones
-            getPhoneList()
-
-            // đóng modal sau khi thêm thành công
-            //getElement('.btn-close').click()
-        })
-
-        // thêm mới thất bại
-        .catch((err) => {
-            console.log('err: ', err)
-        })
-
-    
-}
-
 
 //Xóa product
 window.deletePhone = (id) => {

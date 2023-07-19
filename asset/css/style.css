@@ -73,9 +73,6 @@ header .navbar-brand {
     color: white;
 }
 
-header .phoneNav {
-    
-}
 
 
 .notification{
@@ -178,7 +175,7 @@ header .phoneNav {
     font-size: 28px;
 }
 
-.listProduct .item .btnAdd{
+.listProduct .item button{
     position: absolute;
     top: 50%;
     left: 50%;
@@ -193,7 +190,7 @@ header .phoneNav {
     transform: translateX(-50%) translateY(100px);
     opacity: 0;
 }
-.listProduct .item:hover .btnAdd{
+.listProduct .item:hover button{
     transition:  0.5s;
     opacity: 1;
     transform: translateX(-50%) translateY(0);
