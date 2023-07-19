@@ -74,38 +74,90 @@ const layThongTinPhone = () => {
         phone[name] = value
     })
 
+    
     const { name, price, screen, backCamera, frontCamera, img, desc, type, id} = phone
+    
 
     return new Phone(name, price, screen, backCamera, frontCamera, img, desc, type, id)
 
-
-
-    //  //Validation
-    //  let isValid = true
-
-    //  //Kiểm tra Phone Name
-    //  isValid &= kiemTraChuoi(phone.name, 1, undefined, '#tbTen', '(*)This field cannot be empty')
-
-    //  //Kiểm tra Price
-    //  isValid &= kiemTraChuoi(phone.price, 1, undefined, '#tbTen', '(*)This field cannot be empty') && kiemTraPattern (phone.price, '#tbTKNV', /^[0-9]+$/, '(*)Price must be a number')
-
-    //  //Kiểm tra Phone Screen
-    //  isValid &= kiemTraChuoi(phone.screen, 1, undefined, '#tbTen', '(*)This field cannot be empty')
-
-    //  //Kiểm tra Phone Back Camera
-    //  isValid &= kiemTraChuoi(phone.backCamera, 1, undefined, '#tbTen', '(*)This field cannot be empty')
-
-    //  //Kiểm tra Phone Front Camera
-    //  isValid &= kiemTraChuoi(phone.frontCamera, 1, undefined, '#tbTen', '(*)This field cannot be empty')
-
-    //  //Kiểm tra Phone Image link
-    //  isValid &= kiemTraChuoi(phone.img, 1, undefined, '#tbTen', '(*)This field cannot be empty')
-
-    //  //Kiểm tra Phone Description
-    //  isValid &= kiemTraChuoi(phone.desc, 1, undefined, '#tbTen', '(*)This field cannot be empty')
-
-    //  return isValid ? nhanVien : undefined //(Toán tử 3 ngôi)
+    
 }
+
+
+// Lấy giá trị của một input
+function getValue(id){
+    return document.getElementById(id).value.trim();
+}
+ 
+// Hiển thị lỗi
+function showError(key, mess){
+    document.getElementById(key + '_error').innerHTML = mess;
+}
+
+function validate()
+{
+    var flag = true;
+     
+    // 1 username
+    var username = getValue('name');
+    if (username == '' || username.length < 5 || !/^[a-zA-Z0-9]+$/.test(username)){
+        flag = false;
+        showError('name', '(*)This field cant be empty');
+    }
+     
+    // 2. Price
+    var price = getValue('price');
+    if (price == '' &&  !/^[0-9]{10}$/.test(price)){
+        flag = false;
+        showError('price', '(*)This field cant be empty');
+    }
+     
+    // 3. Back Cam
+    var backCamera = getValue('backCamera');
+    if (backCamera == '' &&  !/^[0-9]{10}$/.test(backCamera)){
+        flag = false;
+        showError('backCamera', '(*)This field cant be empty');
+    }
+
+    // 4. Front Cam
+    var frontCamera = getValue('frontCamera');
+    if (frontCamera == '' &&  !/^[0-9]{10}$/.test(frontCamera)){
+        flag = false;
+        showError('frontCamera', '(*)This field cant be empty');
+    }
+
+    // 5. Image
+    var image = getValue('img');
+    if (image == '' &&  !/^[0-9]{10}$/.test(image)){
+        flag = false;
+        showError('img', '(*)This field cant be empty');
+    }
+
+    // 6 .Description
+    var desc = getValue('desc');
+    if (desc == '' || !/^[a-zA-Z0-9]+$/.test(desc)){
+        flag = false;
+        showError('desc', '(*)This field cant be empty');
+    }
+
+    // 7. Type phone
+    var type = getValue('type');
+    if (type == '' || !/^[a-zA-Z0-9]+$/.test(type)){
+        flag = false;
+        showError('type', '(*)This field cant be empty');
+    }
+
+    // 8. ID
+    var id = getValue('id');
+    if (id == '' &&  !/^[0-9]{10}$/.test(id)){
+        flag = false;
+        showError('id', '(*)This field cant be empty');
+    }
+     
+    return flag;
+}
+
+
 
 // ẩn btn cập nhật khi click vào btn add products
 getElement('#btnAddProduct').onclick = () => {
@@ -138,14 +190,17 @@ getElement('#btnAddPhone').onclick = () => {
             getPhoneList()
 
             // đóng modal sau khi thêm thành công
-            getElement('.btn-close').click()
+            //getElement('.btn-close').click()
         })
 
         // thêm mới thất bại
         .catch((err) => {
             console.log('err: ', err)
         })
+
+    
 }
+
 
 //Xóa product
 window.deletePhone = (id) => {
@@ -229,64 +284,4 @@ getElement('#btnEdit').onclick = () => {
             console.log(err)
         })
 }
-
-// Search
-// getElement('#btnSearch').onclick = () => {
-
-//     const nameSearch = document.querySelectorAll('#txtSearch')
-
-//     let arrSearch = layThongTinPhone()
-
-//     let mang = arrSearch.filter((tenSP, index) => {
-//         if (tenSP.name === nameSearch)
-//         {
-//             return tenSP
-//         }
-//         return
-//     })
-
-//     console.log('mang: ',mang);
-// }
-
-// Tìm kiếm sinh viên
-getElement('#searchName').addEventListener('keyup', function () {
-    var valueSearch = getElement('#searchName').value.toLowerCase()
-    var arrSearch = []
-    
-    for (var i = 0; i < phone.length; i++) {
-        var tenSP = phone[i].name
-        if (tenSP.indexOf(valueSearch) !== -1) {
-            arrSearch.push(phone[i])
-        }
-    }
-    console.log(arrSearch);
-    //renderTable(arrSearch)
-})
-
-
-//input.addEventListener('keyup', filterUsers);
-
-
-//Sort
-// getElement('#Sort').onchange = (obj) => {
-//     const phone = layThongTinPhone()
-
-//     const value = obj.value
-//     // const tim = document.querySelector('#Sort')
-//     if (value == "loai1") {
-//         sapXep = phone.sort((sp, spTiepTheo) => {
-//            return sp.price - spTiepTheo.price
-//        })
-//    } 
-//    else if (value == "loai2") {
-//        sapXep = phone.sort((sp, spTiepTheo) => {
-//            return spTiepTheo.price - sp.price
-//        })
-//    }
-
-//     // forEach((sapXep, index) => {
-//     // })
-    
-//     console.log('sapXep: ', sapXep);
-// }
 
