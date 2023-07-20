@@ -34,16 +34,14 @@ header .navbar-brand {
     color: white;
 }
 
-header .phoneNav {
-    
-}
-
 
 .notification{
     text-align: center;
 }
 
-
+.navbar-expand-lg .navbar-collapse{
+    flex-direction :row-reverse;
+}
 
 /* CAROUSEL */
 #carouselCyber .carousel-caption {
@@ -111,6 +109,11 @@ header .phoneNav {
     border-radius: 15px;
     text-decoration: none;
     padding: 5px 10px;
+}
+
+select{
+    border-radius: 10px;
+    padding: 5px 10px 10px 5px;
 }
 
 /* FOOTER */

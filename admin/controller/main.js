@@ -1,7 +1,9 @@
 import Phone from "../../admin/model/products.js";
 import { DOMAIN } from "../../admin/constants/api.js";
+import ArrProduct from "../arrProduct.js";
 
 const getElement = (selector) => document.querySelector(selector)
+
 
 const getPhoneList = () => {
     const promise = axios({
@@ -12,11 +14,13 @@ const getPhoneList = () => {
     promise
         //get data thành công
         .then((result) => {
+            ArrProduct.pushArr(result.data);
             renderTable(result.data)
         })
         .catch((err) => {
             console.log(err)
         })
+   
 }
 getPhoneList()
 
@@ -29,7 +33,7 @@ function renderTable(arrPhone) {
                 
                 <td>${item.id}</td>
                 <td>${item.name}</td>
-                <td>${item.price.toLocaleString()}</td>
+                <td>${item.price.toLocaleString()}-VND</td>
                 <td>
                     <image
                        src=${item.img} 
@@ -78,8 +82,6 @@ const layThongTinPhone = () => {
 
     return new Phone(name, price, screen, backCamera, frontCamera, img, desc, type, id)
 
-
-
     //  //Validation
     //  let isValid = true
 
@@ -120,6 +122,7 @@ getElement('#btnAddProduct').onclick = () => {
 getElement('#btnAddPhone').onclick = () => {
     // lấy thông tin product từ input
     const phone = layThongTinPhone()
+    // console.log("phone: ", phone);
 
     // call API thêm product
     const promise = axios({
@@ -149,7 +152,6 @@ getElement('#btnAddPhone').onclick = () => {
 
 //Xóa product
 window.deletePhone = (id) => {
-    console.log({ id })
     // call API xóa product
     const promise = axios({
         url: `${DOMAIN}/${id}`,
@@ -230,45 +232,39 @@ getElement('#btnEdit').onclick = () => {
         })
 }
 
-// Search
-getElement('#btnSearch').onclick = () => {
-    const ele = document.querySelectorAll('#txtSearch')
 
-    const phone = layThongTinPhone()
-
-    const arrPhone = Object.keys(phone)
-
-    let mang = arrPhone.filter((tenSP, index) => {
-        if (tenSP.name === ele)
-        {
-            return tenSP
-        }
-        return
+// SEARCH Phone
+getElement('#txtSearch').addEventListener('keyup', function(){
+    var valueSearch = getElement('#txtSearch').value.toLowerCase()
+    let arrFindProduct = [];
+    ArrProduct.arr.map((product)=>{
+        // console.log("product: ", product);
+        let regex = new RegExp(valueSearch.trim(), "g");
+        let matches = product.name.toLowerCase().match(regex);
+        matches && arrFindProduct.push(product);
+        return product;
     })
 
-    console.log('mang: ',mang);
-}
-
-//Sort
-// getElement('#Sort').onchange = (obj) => {
-//     const phone = layThongTinPhone()
-
-//     const value = obj.value
-//     // const tim = document.querySelector('#Sort')
-//     if (value == "loai1") {
-//         sapXep = phone.sort((sp, spTiepTheo) => {
-//            return sp.price - spTiepTheo.price
-//        })
-//    } 
-//    else if (value == "loai2") {
-//        sapXep = phone.sort((sp, spTiepTheo) => {
-//            return spTiepTheo.price - sp.price
-//        })
-//    }
-
-//     // forEach((sapXep, index) => {
-//     // })
+    renderTable(arrFindProduct)
+    console.log("arrFindProduct: ", arrFindProduct);
+})
     
-//     console.log('sapXep: ', sapXep);
-// }
+
+
+// Sort
+getElement('#Sort').onchange = () => {
+    var x = getElement('#Sort').value
+    if (x == 'loai1') {
+        let duy = ArrProduct.arr.sort((a,b) => {
+           return a.price - b.price;
+        })
+        renderTable(duy)
+        
+   }else if (x == "loai2") {
+    let duy = ArrProduct.arr.sort((a,b) => {
+        return b.price - a.price;
+     })
+     renderTable(duy)
+   }
+}
 
