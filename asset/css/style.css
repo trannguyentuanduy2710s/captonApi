@@ -42,6 +42,7 @@ header{
 header .iconCart{
     position: relative;
     z-index: 1;
+    cursor: pointer;
 }
 header .totalQuantity{
     position: absolute;
@@ -159,20 +160,22 @@ header .navbar-brand {
     text-align: center;
 }
 .listProduct .item img{
-    width: 400px;
-    height: 430px;
-    object-fit: cover;
+    width: 250px;
+    height: 280px;
+     
 }
 .listProduct .item{
     position: relative;
-
+    
 }
 .listProduct .item h2{
     font-weight: 700;
     font-size: 28px;
+    color: #fff;
 }
 .listProduct .item .price{
     font-size: 28px;
+    color: #fff;
 }
 
 .listProduct .item button{

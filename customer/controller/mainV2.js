@@ -34,34 +34,57 @@ const getPhoneList = () => {
     promise
         //get data thành công
         .then((result) => {
-            renderTable(result.data)
+            //renderTable(result.data)
+            addDataToHTML(result.data)
         })
         .catch((err) => {
             console.log(err)
         })
 }
-getPhoneList()
+getPhoneList();
 
+function addDataToHTML(arrPhone){
+    // Xóa data nhập từ trang HTML
+    let listProductHTML = document.querySelector('.listProduct');
+    listProductHTML.innerHTML = '';
 
+    // thêm data mới vào
+    if(arrPhone != null) // nếu mảng có data
+    {
+        arrPhone.forEach(product => {
+            let newProduct = document.createElement('div');
+            newProduct.classList.add('item');
+            newProduct.innerHTML = 
+            `<img src="${product.img}" alt="">
+            <h2>${product.name}</h2>
+            <div class="price">$${product.price}</div>
+            <h2>${product.desc}</h2>
+            <button onclick="addCart(${product.id})">Add To Cart</button>`;
 
-function renderTable(arrPhone) {
-    let htmlContent = '';
-    arrPhone.forEach((item) => {
-        htmlContent += `
-            <div class="item">
-                <div class="">
-                    <img src="${item.img}" alt="">
-                    <h2>${item.name}</h2>
-                    <div class="price">$${item.price}</div>
-                    <h2>${item.desc}</h2>
-                    <button onclick="addCart(${item.id})">Add to cart</button>
-                </div>
-            </div>
-        `;
-    });
+            listProductHTML.appendChild(newProduct);
 
-    getElement('.listProduct').innerHTML = htmlContent;
+        });
+    }
 }
+
+// function renderTable(arrPhone) {
+//     let htmlContent = '';
+//     arrPhone.forEach((item) => {
+//         htmlContent += `
+//             <div class="item">
+//                 <div class="">
+//                     <img src="${item.img}" alt="">
+//                     <h2>${item.name}</h2>
+//                     <div class="price">$${item.price}</div>
+//                     <h2>${item.desc}</h2>
+//                     <button onclick="addCart(${item.id})">Add to cart</button>
+//                 </div>
+//             </div>
+//         `;
+//     });
+
+//     getElement('.listProduct').innerHTML = htmlContent;
+// }
 
 
 
@@ -77,27 +100,36 @@ function checkCart(){
     //     listCart = []
     // }
 }
-checkCart()
+checkCart();
 
-function addCart ($idProduct) {
-    let productCopy = JSON.parse(JSON.stringify(cartItem))
+window.addCart = (idProduct) => {
+    //let productCopy = JSON.parse(JSON.stringify(cartItem))
+    let productCopy = new cartItem
 
-    if (!listCart[$idProduct]) {
+    if (!listCart[idProduct]) {
         let dataProduct = productCopy.filter(
-            product => product.id === $idProduct
+            product => product.id === idProduct
         )[0]
 
-        listCart[$idProduct] = dataProduct
-        listCart[$idProduct].quantity = 1
+        listCart[idProduct] = dataProduct
+        listCart[idProduct].quantity = 1
     }else {
-        listCart[$idProduct].quantity++
+        listCart[idProduct].quantity++
     }
+    
 
-    let timeSave = "expires=Wed, 19 July 2025 23:59:59 UTC"
-    document.cookie = "listCart="+JSON.stringify(listCart)+"; "+timeSave+"; path=/"
-    addCartToHTML()
+    addCartToHTML();
 }
-addCartToHTML()
+addCartToHTML();
+
+// function addCart($idProduct) {
+    
+
+   
+    
+// }
+
+
 function addCartToHTML () {
     let listCartHTML = document.querySelector('.listCart');
     listCartHTML.innerHTML = '';
