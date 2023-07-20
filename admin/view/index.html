@@ -83,7 +83,7 @@
             <input placeholder="Nhập tên điện thoại" type="text" class="form-control" id="txtSearch">
         </div>
     </div>
-    <table class="table mt-5">
+    <table id="myTable" class="table mt-3">
         <thead>
             <tr>
                 <th>ID</th>
@@ -109,58 +109,75 @@
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="fa-brands fa-apple"></i></span>
-                        </div>
-                        <input type="text" name="name" class="form-control" aria-label="Amount" placeholder="Phone Name">
+                        </div>                                                 
+                        <input type="text" id="name" name="name" class="form-control" aria-label="Amount" placeholder="Phone Name"><br>                       
+                        
+                        <span class="sp-thongbao text-danger" id="name_error"></span>                        
                     </div>
                         <span id="tbPhone"></span>
 
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                           <span class="input-group-text">$</span>
-                        </div>
-                        <input type="text" name="price" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Price">
+                        </div>                        
+                        <input type="text" id="price" name="price" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Price">
+                                                
+                        <span class="sp-thongbao text-danger" id="price_error"></span>                        
                     </div>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="fa-brands fa-apple"></i></span>
-                        </div>
-                        <input type="text" name="backCamera" class="form-control" aria-label="Amount" placeholder="Back Camera">
+                        </div>                
+                        <input type="text" id="backCamera" name="backCamera" class="form-control" aria-label="Amount" placeholder="Back Camera">                                               
+
+                        <span class="sp-thongbao text-danger" id="backCamera_error"></span>                        
                     </div>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="fa-brands fa-apple"></i></span>
-                        </div>
-                        <input type="text" name="frontCamera" class="form-control" aria-label="Amount" placeholder="Front Camera">
+                        </div>            
+                        <input type="text" id="frontCamera" name="frontCamera" class="form-control" aria-label="Amount" placeholder="Front Camera">                                          
+
+                    <span class="sp-thongbao text-danger" id="frontCamera_error"></span>                       
                     </div>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="fa-solid fa-images"></i></span>
-                        </div>
-                        <input type="text" name="img" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Image">
+                        </div>                       
+                        <input type="text" id="img" name="img" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Image">
+                                      
+                        <span class="sp-thongbao text-danger" id="img_error"></span>                        
                     </div>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="fa-brands fa-rocketchat"></i></span>
-                        </div>
-                        <input type="text" name="desc" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Description">
+                        </div>                       
+                        <input type="text" id="desc" name="desc" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Description">
+                       
+                    <span class="sp-thongbao text-danger" id="desc_error"></span>
+                        
                     </div>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="fa-brands fa-rocketchat"></i></span>
-                        </div>
-                        <input type="text" name="type" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Type Phone">
+                        </div>                       
+                        <input type="text" id="type" name="type" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Type Phone">
+       
+                    <span class="sp-thongbao text-danger" id="type_error"></span>                        
                     </div>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="fa-brands fa-rocketchat"></i></span>
-                        </div>
-                        <input type="text" name="id" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="ID">
+                        </div>                       
+                        <input type="text" id="id" name="id" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="ID">
+                       
+                        <span class="sp-thongbao text-danger" id="id_error"></span>                        
                     </div>
                       
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-warning" id="btnEdit">Edit</button>
-                    <button type="button" name="btnadd" id="btnAddPhone" class="btn btn-primary">Add Phone</button>
+                    <button type="button" name="btnadd" id="btnAddPhone" class="btn btn-primary" onclick="return validate()">Add Phone</button>
                   </div>
                 <!-- <div class="modal-footer">
                     <button type="button" name="btnadd" id ="btnsave" class="btn btn-primary">Add Phone</button>

@@ -78,9 +78,13 @@ const layThongTinPhone = () => {
         phone[name] = value
     })
 
+    
     const { name, price, screen, backCamera, frontCamera, img, desc, type, id} = phone
 
+    validate()
+
     return new Phone(name, price, screen, backCamera, frontCamera, img, desc, type, id)
+
 
     //  //Validation
     //  let isValid = true
@@ -141,13 +145,89 @@ getElement('#btnAddPhone').onclick = () => {
             getPhoneList()
 
             // đóng modal sau khi thêm thành công
-            getElement('.btn-close').click()
+            //getElement('.btn-close').click()
         })
 
         // thêm mới thất bại
         .catch((err) => {
             console.log('err: ', err)
         })
+
+    
+}
+
+
+//VALIDATION
+// Lấy giá trị của một input
+function getValue(id){
+    return document.getElementById(id).value.trim();
+}
+ 
+// Hiển thị lỗi
+function showError(key, mess){
+    document.getElementById(key + '_error').innerHTML = mess;
+}
+
+function validate () {
+    var flag = true;
+     
+    // 1 username
+    var username = getValue('name');
+    if (username == '' || !/^[a-zA-Z0-9]+$/.test(username)){
+        flag = false;
+        showError('name', '(*)This field cant be empty');
+    }
+     
+    // 2. Price
+    var price = getValue('price');
+    if (price == '' &&  !/^[0-9]{10}$/.test(price)){
+        flag = false;
+        showError('price', '(*)This field cant be empty');
+    }
+     
+    // 3. Back Cam
+    var backCamera = getValue('backCamera');
+    if (backCamera == '' &&  !/^[0-9]{10}$/.test(backCamera)){
+        flag = false;
+        showError('backCamera', '(*)This field cant be empty');
+    }
+
+    // 4. Front Cam
+    var frontCamera = getValue('frontCamera');
+    if (frontCamera == '' &&  !/^[0-9]{10}$/.test(frontCamera)){
+        flag = false;
+        showError('frontCamera', '(*)This field cant be empty');
+    }
+
+    // 5. Image
+    var image = getValue('img');
+    if (image == '' &&  !/^[0-9]{10}$/.test(image)){
+        flag = false;
+        showError('img', '(*)This field cant be empty');
+    }
+
+    // 6 .Description
+    var desc = getValue('desc');
+    if (desc == '' || !/^[a-zA-Z0-9]+$/.test(desc)){
+        flag = false;
+        showError('desc', '(*)This field cant be empty');
+    }
+
+    // 7. Type phone
+    var type = getValue('type');
+    if (type == '' || !/^[a-zA-Z0-9]+$/.test(type)){
+        flag = false;
+        showError('type', '(*)This field cant be empty');
+    }
+
+    // 8. ID
+    var id = getValue('id');
+    if (id == '' &&  !/^[0-9]{10}$/.test(id)){
+        flag = false;
+        showError('id', '(*)This field cant be empty');
+    }
+     
+    return flag;
 }
 
 //Xóa product
