@@ -1,5 +1,6 @@
 import Phone from "../../admin/model/products.js";
 import { DOMAIN } from "../../admin/constants/api.js";
+import ArrProduct from "../arrProduct.js";
 
 const getElement = (selector) => document.querySelector(selector)
 
@@ -13,6 +14,7 @@ const getPhoneList = () => {
     promise
         //get data thành công
         .then((result) => {
+            ArrProduct.pushArr(result.data);
             renderTable(result.data)
         })
         .catch((err) => {
@@ -31,7 +33,7 @@ function renderTable(arrPhone) {
                 
                 <td>${item.id}</td>
                 <td>${item.name}</td>
-                <td>${item.price.toLocaleString()}</td>
+                <td>${item.price.toLocaleString()}-VND</td>
                 <td>
                     <image
                        src=${item.img} 
@@ -120,6 +122,7 @@ getElement('#btnAddProduct').onclick = () => {
 getElement('#btnAddPhone').onclick = () => {
     // lấy thông tin product từ input
     const phone = layThongTinPhone()
+    // console.log("phone: ", phone);
 
     // call API thêm product
     const promise = axios({
@@ -229,67 +232,39 @@ getElement('#btnEdit').onclick = () => {
         })
 }
 
-// Search
-// getElement('#btnSearch').onclick = () => {
-//     const ele = document.querySelectorAll('#txtSearch')
-//     console.log("ele: ", ele);
 
-//     const phone = layThongTinPhone()
+// SEARCH Phone
+getElement('#txtSearch').addEventListener('keyup', function(){
+    var valueSearch = getElement('#txtSearch').value.toLowerCase()
+    let arrFindProduct = [];
+    ArrProduct.arr.map((product)=>{
+        // console.log("product: ", product);
+        let regex = new RegExp(valueSearch.trim(), "g");
+        let matches = product.name.toLowerCase().match(regex);
+        matches && arrFindProduct.push(product);
+        return product;
+    })
 
-//     const arrPhone = Object.Phone(Phone.name)
-
-//     let mang = arrPhone.filter((tenSP) => {
-//         if (tenSP.name === ele)
-//         {
-//             return tenSP
-//         }
-//         return
-//     })
-
-//     console.log('mang: ',mang);
-// }
-
-
-// getElement('#txtSearch').addEventListener('keyup', function(){
-//     let duy = layThongTinPhone()
-//     console.log("duy: ", duy);
-//     console.log("valueSearch: ", valueSearch);
-   
-//     // const searchResults = duy.phone((valueSearch) => {
-//     //     const productName = Phone.name
-//     //     return productName.includes(valueSearch);
-//     // });
-// //     // for(var i = 0; i < dsnv.arrNV.length; i++){
-// //     //     var ranks = dsnv.arrNV[i].xepLoai().toLowerCase()
-// //     //     if(ranks.indexOf(valueSearch) !== -1){
-// //     //         arrSearch.push(dsnv.arrNV[i])
-// //     //     }
-// //     // }
-// //     // console.log("arrNVSearch: ", arrNVSearch)   
-// //     // renderdsnv(arrNVSearch)
-// //    return searchResults;
-// })
-
-//Sort
-// getElement('#Sort').onchange = (obj) => {
-//     let duy = layThongTinPhone()
-//     console.log("duy: ", duy);
-
-//     // const tim = document.querySelector('#Sort')
-//     if (value == "loai1") {
-//         sapXep = phone.sort((sp, spTiepTheo) => {
-//            return sp.price - spTiepTheo.price
-//        })
-//    } 
-//    else if (value == "loai2") {
-//        sapXep = phone.sort((sp, spTiepTheo) => {
-//            return spTiepTheo.price - sp.price
-//        })
-//    }
-
-//     // forEach((sapXep, index) => {
-//     // })
+    renderTable(arrFindProduct)
+    console.log("arrFindProduct: ", arrFindProduct);
+})
     
-//     console.log('sapXep: ', sapXep);
-// }
+
+
+// Sort
+getElement('#Sort').onchange = () => {
+    var x = getElement('#Sort').value
+    if (x == 'loai1') {
+        let duy = ArrProduct.arr.sort((a,b) => {
+           return a.price - b.price;
+        })
+        renderTable(duy)
+        
+   }else if (x == "loai2") {
+    let duy = ArrProduct.arr.sort((a,b) => {
+        return b.price - a.price;
+     })
+     renderTable(duy)
+   }
+}
 
