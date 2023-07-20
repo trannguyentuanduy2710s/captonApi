@@ -77,40 +77,10 @@ const layThongTinPhone = () => {
         const { name, value } = ele
         phone[name] = value
     })
-
-    
     const { name, price, screen, backCamera, frontCamera, img, desc, type, id} = phone
-
     validate()
 
-    return new Phone(name, price, screen, backCamera, frontCamera, img, desc, type, id)
-
-
-    //  //Validation
-    //  let isValid = true
-
-    //  //Kiểm tra Phone Name
-    //  isValid &= kiemTraChuoi(phone.name, 1, undefined, '#tbTen', '(*)This field cannot be empty')
-
-    //  //Kiểm tra Price
-    //  isValid &= kiemTraChuoi(phone.price, 1, undefined, '#tbTen', '(*)This field cannot be empty') && kiemTraPattern (phone.price, '#tbTKNV', /^[0-9]+$/, '(*)Price must be a number')
-
-    //  //Kiểm tra Phone Screen
-    //  isValid &= kiemTraChuoi(phone.screen, 1, undefined, '#tbTen', '(*)This field cannot be empty')
-
-    //  //Kiểm tra Phone Back Camera
-    //  isValid &= kiemTraChuoi(phone.backCamera, 1, undefined, '#tbTen', '(*)This field cannot be empty')
-
-    //  //Kiểm tra Phone Front Camera
-    //  isValid &= kiemTraChuoi(phone.frontCamera, 1, undefined, '#tbTen', '(*)This field cannot be empty')
-
-    //  //Kiểm tra Phone Image link
-    //  isValid &= kiemTraChuoi(phone.img, 1, undefined, '#tbTen', '(*)This field cannot be empty')
-
-    //  //Kiểm tra Phone Description
-    //  isValid &= kiemTraChuoi(phone.desc, 1, undefined, '#tbTen', '(*)This field cannot be empty')
-
-    //  return isValid ? nhanVien : undefined //(Toán tử 3 ngôi)
+    return new Phone(name, price, screen, backCamera, frontCamera, img, desc, type, id) 
 }
 
 // ẩn btn cập nhật khi click vào btn add products
@@ -141,6 +111,7 @@ getElement('#btnAddPhone').onclick = () => {
     promise
         // thêm mới thành công
         .then((result) => {
+            
             // get lại danh sách phones
             getPhoneList()
 
@@ -151,11 +122,8 @@ getElement('#btnAddPhone').onclick = () => {
         // thêm mới thất bại
         .catch((err) => {
             console.log('err: ', err)
-        })
-
-    
+        })   
 }
-
 
 //VALIDATION
 // Lấy giá trị của một input
@@ -166,6 +134,7 @@ function getValue(id){
 // Hiển thị lỗi
 function showError(key, mess){
     document.getElementById(key + '_error').innerHTML = mess;
+    
 }
 
 function validate () {
@@ -173,7 +142,7 @@ function validate () {
      
     // 1 username
     var username = getValue('name');
-    if (username == '' || !/^[a-zA-Z0-9]+$/.test(username)){
+    if (username == '' && !/^[a-zA-Z0-9]+$/.test(username)){
         flag = false;
         showError('name', '(*)This field cant be empty');
     }
@@ -208,14 +177,14 @@ function validate () {
 
     // 6 .Description
     var desc = getValue('desc');
-    if (desc == '' || !/^[a-zA-Z0-9]+$/.test(desc)){
+    if (desc == '' && !/^[a-zA-Z0-9]+$/.test(desc)){
         flag = false;
         showError('desc', '(*)This field cant be empty');
     }
 
     // 7. Type phone
     var type = getValue('type');
-    if (type == '' || !/^[a-zA-Z0-9]+$/.test(type)){
+    if (type == '' && !/^[a-zA-Z0-9]+$/.test(type)){
         flag = false;
         showError('type', '(*)This field cant be empty');
     }

@@ -1,13 +1,14 @@
 import Phone from '../../customer/model/products.js'
 import { DOMAIN } from '../../customer/constants/api.js'
 import cartItem from '../../customer/model/cartItem.js'
+import ArrProduct from "../../customer/model/arrProduct.js";
 
 let iconCart = document.querySelector('.iconCart')
 let cart = document.querySelector('.cart')
 let container = document.querySelector('.container')
 let close = document.querySelector('.close')
 
-const getElement = (selector) => document.querySelector(selector)
+//const getElement = (selector) => document.querySelector(selector)
 
 
 
@@ -96,28 +97,31 @@ function checkCart(){
     if(cookieValue){
         listCart = JSON.parse(cookieValue.split('=')[1])
     }
-    // else{
-    //     listCart = []
-    // }
+    else{
+        listCart = []
+    }
 }
 checkCart();
 
-window.addCart = (idProduct) => {
+window.addCart = ($idProduct) => {
     //let productCopy = JSON.parse(JSON.stringify(cartItem))
-    let productCopy = new cartItem
-
-    if (!listCart[idProduct]) {
-        let dataProduct = productCopy.filter(
-            product => product.id === idProduct
-        )[0]
-
-        listCart[idProduct] = dataProduct
-        listCart[idProduct].quantity = 1
-    }else {
-        listCart[idProduct].quantity++
-    }
+    //let productCopy = new cartItem
     
+    if (! listCart[$idProduct]) {
+        //listCart[idProduct] = ArrProduct.arr.filter(product => product.id == idProduct)[0];
+        //listCart[idProduct].quantity = 1;
+        let dataProduct = ArrProduct.arr.filter(
+             product => product.id == $idProduct
+         )[0]
 
+        listCart[$idProduct] = dataProduct
+        listCart[$idProduct].quantity = 1 
+    }
+    else {
+        listCart[$idProduct].quantity++;
+    }
+    let timeSave = "expires=Wed, 19 July 2025 23:59:59 UTC"
+    document.cookie = "listCart="+JSON.stringify(listCart)+"; "+timeSave+"; path=/"
     addCartToHTML();
 }
 addCartToHTML();
@@ -161,7 +165,7 @@ function addCartToHTML () {
     totalHTML.innerText = totalQuantity;
 }
 
-function changeQuantity($idProduct, $type) {
+window.changeQuantity = ($idProduct, $type) => {
     switch ($type) {
         case '+' :
             listCart[$idProduct].quantity++
